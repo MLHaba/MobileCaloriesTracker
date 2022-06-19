@@ -34,7 +34,7 @@ class CaloriesActivity : AppCompatActivity() {
     private fun setupRecyclerViewData() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = MealAdapter(this, getMealsList())
+        val adapter = MealAdapter(this, getMealsList(), MealAdapter.VIEW_TYPE_CLEAN)
         recyclerView.adapter = adapter
     }
 
