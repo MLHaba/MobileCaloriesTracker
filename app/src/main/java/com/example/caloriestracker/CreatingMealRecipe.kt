@@ -19,6 +19,7 @@ class CreatingMealRecipe() : AppCompatActivity() {
     companion object {
         // lista składników w przepisie
         lateinit var ingredientsListPairs: ArrayList<Pair<Int, ItemModelIngredient>>
+        lateinit var addDialog: Dialog
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +42,16 @@ class CreatingMealRecipe() : AppCompatActivity() {
         }
 
         ingredientsListPairs = ArrayList<Pair<Int, ItemModelIngredient>>()
+
+        // Dialog dodawania przepisów
+        addDialog = Dialog(this)
+        addDialog.setCancelable(false)
+        addDialog.setContentView(R.layout.dialog_add_ingredient_list)
+        val tvCancel = addDialog.findViewById<TextView>(R.id.tvCancel)
+        tvCancel.setOnClickListener(View.OnClickListener {
+            addDialog.dismiss()
+        })
+
         setupRecyclerViewData()
     }
 
@@ -120,35 +131,30 @@ class CreatingMealRecipe() : AppCompatActivity() {
 
     }
 
-    // Wyświetla dialog dodawania składnika do posiłku, dodaje składnik do listy przepisu
+    // Wyświetla dialog dodawania składnika do posiłku
     private fun addIngredientRecipeDialog() {
-        val addDialog = Dialog(this)
-        addDialog.setCancelable(false)
-        addDialog.setContentView(R.layout.dialog_add_ingredient_list)
-
-        val etName = addDialog.findViewById<EditText>(R.id.etName)
-        val etAmount = addDialog.findViewById<EditText>(R.id.etAmount)
-        val tvCancel = addDialog.findViewById<TextView>(R.id.tvCancel)
 
         val recyclerView = addDialog.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter =
             IngredientAdapter(this, getIngredientsList(), IngredientAdapter.VIEW_TYPE_CLEAN)
         recyclerView.adapter = adapter
-
-        tvCancel.setOnClickListener(View.OnClickListener {
-            addDialog.dismiss()
-        })
-
         addDialog.show()
     }
 
+    //  Dodaje składnik do listy przepisu
     fun addIngredientRecipe(ingredient: ItemModelIngredient) {
+
+        val etAmount = addDialog.findViewById<EditText>(R.id.etAmount)
+        val amount = etAmount.text.toString()
+
         if (amount.isNotEmpty()) {
             val calculatedCalories = ceil(ingredient.calories.toDouble() * (amount.toDouble() / 100))
             ingredientsListPairs.add(
                 Pair(amount.toInt(), ItemModelIngredient(0, ingredient.name, calculatedCalories.toInt())))
             setupRecyclerViewData()
+            etAmount.text.clear()
+            addDialog.dismiss()
         } else {
         Toast.makeText(
             applicationContext,
@@ -156,7 +162,6 @@ class CreatingMealRecipe() : AppCompatActivity() {
         ).show()
     }
 }
-
 
     // Usuwa składnik z listy składników w przepisie
     fun deleteIngredientDialog(ingredient: ItemModelIngredient) {

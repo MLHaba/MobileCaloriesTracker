@@ -9,10 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.caloriestracker.CreatingMealRecipe
-import com.example.caloriestracker.IngredientsActivity
-import com.example.caloriestracker.ItemModelIngredient
-import com.example.caloriestracker.R
+import com.example.caloriestracker.*
 
 class IngredientAdapter (private val context: Context, private val list: List<ItemModelIngredient>, val viewType: Int) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -56,7 +53,8 @@ class IngredientAdapter (private val context: Context, private val list: List<It
         if(holder is ViewHolder)
         {
             holder.tvName.text = itemViewModel.name
-            holder.tvCalories.text = String.format("%d kcal/100g", itemViewModel.calories)
+            holder.tvCalories.text = String.format(
+                context.resources.getString(R.string.kcalPerGrams), itemViewModel.calories)
 
             holder.ivModify.setOnClickListener{
                 if(context is IngredientsActivity) {
@@ -73,7 +71,8 @@ class IngredientAdapter (private val context: Context, private val list: List<It
 
         if(holder is ViewHolderRecipe){
             holder.tvName.text = itemViewModel.name
-            holder.tvCalories.text = String.format("%d kcal", itemViewModel.calories)
+            holder.tvCalories.text = String.format(
+                context.resources.getString(R.string.kcal), itemViewModel.calories)
 
             holder.ivDelete.setOnClickListener{
                 if(context is CreatingMealRecipe) {
@@ -84,7 +83,14 @@ class IngredientAdapter (private val context: Context, private val list: List<It
 
         if(holder is ViewHolderClean){
             holder.tvName.text = itemViewModel.name
-            holder.tvCalories.text = String.format("%d kcal", itemViewModel.calories)
+            holder.tvCalories.text = String.format(
+                context.resources.getString(R.string.kcalPerGrams), itemViewModel.calories)
+
+            holder.llMain.setOnClickListener {
+                if(context is CreatingMealRecipe) {
+                    context.addIngredientRecipe(itemViewModel)
+                }
+            }
         }
     }
 

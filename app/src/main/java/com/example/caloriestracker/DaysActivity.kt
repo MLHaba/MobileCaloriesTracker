@@ -3,6 +3,7 @@ package com.example.caloriestracker
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,10 +28,16 @@ class DaysActivity : AppCompatActivity() {
 
     // Ustawia źródło danych i adapter dla RecyclerView
     private fun setupRecyclerViewData() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = DayAdapter(this, getDaysList())
-        recyclerView.adapter = adapter
+        val tvNoRecords = findViewById<TextView>(R.id.tvNoRecords)
+        if(getDaysList().size <=0) {
+            tvNoRecords.visibility = android.view.View.VISIBLE
+        } else {
+            tvNoRecords.visibility = android.view.View.GONE
+            val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            val adapter = DayAdapter(this, getDaysList())
+            recyclerView.adapter = adapter
+        }
     }
 
     // DEBUG MODE

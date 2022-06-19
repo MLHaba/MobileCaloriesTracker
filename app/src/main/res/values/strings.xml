@@ -22,7 +22,7 @@
     <string name="updateDialogDescription">Zaktualizuj informacje o wybranym wpisie</string>
     <string name="addIngredientDialogDescription">Wprowadź informacje o składniku który chcesz dodać: nazwę, kalorie na 100g składnika</string>
     <string name="addCaloriesDialogDescription">Wprowadź masę spożytego posiłku w gramach</string>
-    <string name="addIngredientMealDialogDescription">Wprowadź nazwę składnika zgodną z nazwą w bazie i ilość użytą w przepisie</string>
+    <string name="addIngredientMealDialogDescription">Wybierz z listy składnik i wprowadź ilość użytą w przepisie</string>
 
     <string name="nameLabel">Nazwa</string>
     <string name="caloriesLabel">Kalorie na 100g</string>
@@ -47,5 +47,6 @@
 
     <string name="noIngredientsToast">Brak składników</string>
     <string name="invalidCalories">Nieprawidłowe kalorie</string>
+    <string name="noRecordsMessage">Brak rekordów</string>
 
 </resources>
