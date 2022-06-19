@@ -48,5 +48,6 @@
     <string name="noIngredientsToast">Brak składników</string>
     <string name="invalidCalories">Nieprawidłowe kalorie</string>
     <string name="noRecordsMessage">Brak rekordów</string>
+    <string name="noRecipesMessage">Brak przepisów</string>
 
 </resources>

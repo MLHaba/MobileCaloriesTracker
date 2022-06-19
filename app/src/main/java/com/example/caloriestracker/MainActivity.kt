@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val caloriesButton = findViewById<Button>(R.id.btnCalories)
+        val caloriesButton = findViewById<ImageView>(R.id.btnCalories)
         caloriesButton.setOnClickListener() {
             val intent = Intent(this, CaloriesActivity::class.java)
             startActivity(intent)

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:padding="10dp">
 
     <Button
         android:id="@+id/btnIngredients"
@@ -25,11 +26,16 @@
         android:layout_height="wrap_content"
         android:text="@string/mainBtnCalendar" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnCalories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/mainBtnCalories" />
+        android:layout_marginTop="20dp"
+        android:foreground="?attr/selectableItemBackground"
+        app:srcCompat="@drawable/icon_add"
+        android:scaleType="center"
+
+        app:tint="@color/MediumMain" />
 
 
 </LinearLayout>

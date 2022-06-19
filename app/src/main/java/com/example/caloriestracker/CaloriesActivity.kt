@@ -32,10 +32,16 @@ class CaloriesActivity : AppCompatActivity() {
 
     // Ustawia źródło danych i adapter dla RecyclerView
     private fun setupRecyclerViewData() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = MealAdapter(this, getMealsList(), MealAdapter.VIEW_TYPE_CLEAN)
-        recyclerView.adapter = adapter
+        val tvNoRecords = findViewById<TextView>(R.id.tvNoRecords)
+        if(getMealsList().size <=0) {
+            tvNoRecords.visibility = android.view.View.VISIBLE
+        } else {
+            tvNoRecords.visibility = android.view.View.GONE
+            val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            val adapter = MealAdapter(this, getMealsList(), MealAdapter.VIEW_TYPE_CLEAN)
+            recyclerView.adapter = adapter
+        }
     }
 
     // Zwraca datę w postaci String zformatowaną zgodnie z DATE_PATTERN DatabaseManagera
