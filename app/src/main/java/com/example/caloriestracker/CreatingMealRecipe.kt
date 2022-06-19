@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.caloriestracker.adapters.IngredientAdapter
 import kotlin.math.ceil
 
-class CreatingMealRecipe() : AppCompatActivity(){
+class CreatingMealRecipe() : AppCompatActivity() {
 
     companion object {
         // lista składników w przepisie
@@ -45,9 +45,9 @@ class CreatingMealRecipe() : AppCompatActivity(){
     }
 
     // Zwraca listę składników w przepisie
-    private fun getIngredientsListRecipe() : ArrayList<ItemModelIngredient>{
+    private fun getIngredientsListRecipe(): ArrayList<ItemModelIngredient> {
         val list = ArrayList<ItemModelIngredient>()
-        for(pair in ingredientsListPairs){
+        for (pair in ingredientsListPairs) {
             list.add(pair.second)
         }
         return list
@@ -63,16 +63,19 @@ class CreatingMealRecipe() : AppCompatActivity(){
     private fun setupRecyclerViewData() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = IngredientAdapter(this, getIngredientsListRecipe(), IngredientAdapter.VIEW_TYPE_RECIPE)
+        val adapter =
+            IngredientAdapter(this, getIngredientsListRecipe(), IngredientAdapter.VIEW_TYPE_RECIPE)
         recyclerView.adapter = adapter
     }
 
     // Tworzy posiłek na podstawie listy składników i masy, dodaje go do bazy
-    private fun createMeal(){
+    private fun createMeal() {
 
-        if(ingredientsListPairs.size <= 0) {
-            Toast.makeText(applicationContext,
-                (R.string.noIngredientsToast), Toast.LENGTH_SHORT).show()
+        if (ingredientsListPairs.size <= 0) {
+            Toast.makeText(
+                applicationContext,
+                (R.string.noIngredientsToast), Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -85,17 +88,21 @@ class CreatingMealRecipe() : AppCompatActivity(){
             ingredients += pair.second.name + ", "
         }
 
-        if(total_calories <= 0) {
-            Toast.makeText(applicationContext,
-                (R.string.invalidCalories), Toast.LENGTH_SHORT).show()
+        if (total_calories <= 0) {
+            Toast.makeText(
+                applicationContext,
+                (R.string.invalidCalories), Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
         val etName = findViewById<EditText>(R.id.etName)
         val name = etName.text.toString()
-        if(name.isEmpty()) {
-            Toast.makeText(applicationContext,
-                (R.string.insertDataToast), Toast.LENGTH_SHORT).show()
+        if (name.isEmpty()) {
+            Toast.makeText(
+                applicationContext,
+                (R.string.insertDataToast), Toast.LENGTH_SHORT
+            ).show()
             return
         }
 
@@ -103,9 +110,11 @@ class CreatingMealRecipe() : AppCompatActivity(){
         val databaseManager: DatabaseManager = DatabaseManager(this)
         val status =
             databaseManager.addMeal(ItemModelMeal(0, name, calculatedCalories.toInt(), ingredients))
-        if(status > -1){
-            Toast.makeText(applicationContext,
-                (R.string.addedMealToast), Toast.LENGTH_SHORT).show()
+        if (status > -1) {
+            Toast.makeText(
+                applicationContext,
+                (R.string.addedMealToast), Toast.LENGTH_SHORT
+            ).show()
             finish()
         }
 
@@ -123,7 +132,8 @@ class CreatingMealRecipe() : AppCompatActivity(){
 
         val recyclerView = addDialog.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = IngredientAdapter(this, getIngredientsList(), IngredientAdapter.VIEW_TYPE_CLEAN)
+        val adapter =
+            IngredientAdapter(this, getIngredientsList(), IngredientAdapter.VIEW_TYPE_CLEAN)
         recyclerView.adapter = adapter
 
         tvCancel.setOnClickListener(View.OnClickListener {
@@ -134,8 +144,19 @@ class CreatingMealRecipe() : AppCompatActivity(){
     }
 
     fun addIngredientRecipe(ingredient: ItemModelIngredient) {
-
+        if (amount.isNotEmpty()) {
+            val calculatedCalories = ceil(ingredient.calories.toDouble() * (amount.toDouble() / 100))
+            ingredientsListPairs.add(
+                Pair(amount.toInt(), ItemModelIngredient(0, ingredient.name, calculatedCalories.toInt())))
+            setupRecyclerViewData()
+        } else {
+        Toast.makeText(
+            applicationContext,
+            getString(R.string.insertDataToast), Toast.LENGTH_SHORT
+        ).show()
     }
+}
+
 
     // Usuwa składnik z listy składników w przepisie
     fun deleteIngredientDialog(ingredient: ItemModelIngredient) {
