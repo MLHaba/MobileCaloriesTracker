@@ -95,7 +95,7 @@ class DatabaseManager(context: Context) :
     fun viewIngredients() : ArrayList<ItemModelIngredient> {
         val ingredientsList = ArrayList<ItemModelIngredient>()
 
-        val selectQuery = "SELECT * FROM $TABLE_INGREDIENTS"
+        val selectQuery = "SELECT * FROM $TABLE_INGREDIENTS ORDER BY $KEY_NAME_I ASC"
         val database = this.readableDatabase
         var cursor: Cursor? = null
 
@@ -157,31 +157,6 @@ class DatabaseManager(context: Context) :
         return success
     }
 
-    // Sprawdza czy istnieje składnik o podanej nazwie, zwraca wartość kalorii jeśli istnieje,
-    //zwraca -1 jeśli nie istnieje
-    @SuppressLint("Range")
-    fun existsIngredient(name: String) : Int {
-        val database = this.writableDatabase
-        val selectQuery = "SELECT  * FROM $TABLE_INGREDIENTS WHERE $KEY_NAME_I = ?"
-        var cursor: Cursor? = null
-
-        try {
-            cursor = database.rawQuery(selectQuery, arrayOf(name))
-        } catch (e: SQLiteException) {
-            database.execSQL(selectQuery)
-            return -1
-        }
-
-        val calories: Int
-
-        return if (cursor.moveToFirst()){
-            calories = cursor.getInt(cursor.getColumnIndex(KEY_CALORIES_I))
-            calories
-
-        } else {
-            -1
-        }
-    }
     //endregion
 
     //region MEAL
@@ -206,7 +181,7 @@ class DatabaseManager(context: Context) :
     fun viewMeals() : ArrayList<ItemModelMeal> {
         val mealsList = ArrayList<ItemModelMeal>()
 
-        val selectQuery = "SELECT * FROM $TABLE_MEALS"
+        val selectQuery = "SELECT * FROM $TABLE_MEALS ORDER BY $KEY_NAME_M ASC"
         val database = this.readableDatabase
         var cursor: Cursor? = null
 
