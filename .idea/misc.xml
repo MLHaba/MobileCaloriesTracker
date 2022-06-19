@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/activity_add_calories.xml" value="0.21603260869565216" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/activity_calories.xml" value="0.21603260869565216" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/activity_creating_meal_recipe.xml" value="0.25416666666666665" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/activity_days.xml" value="0.25416666666666665" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/activity_ingredients.xml" value="0.1" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/activity_main.xml" value="0.21603260869565216" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/activity_meals.xml" value="0.25416666666666665" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/dialog_add_calories.xml" value="0.21603260869565216" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/dialog_add_ingredient.xml" value="0.2" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/dialog_add_ingredient_meal.xml" value="0.21603260869565216" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/dialog_add_meal.xml" value="0.21603260869565216" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/dialog_update_ingredient.xml" value="0.21603260869565216" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/dialog_update_meal.xml" value="0.21603260869565216" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/item_view_layout_day.xml" value="0.25416666666666665" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/item_view_layout_ingredient.xml" value="0.264" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/item_view_layout_meal.xml" value="0.25416666666666665" />
+        <entry key="..\:/_STUDIA/PAM/CaloriesTracker/app/src/main/res/layout/item_view_layout_meal_clean.xml" value="0.264" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">CaloriesTracker</string>
+    <string name="kcalPerGrams">%d kcal/100g</string>
+    <string name="kcal">%d kcal</string>
+
+    <string name="mainBtnIngredients">Składniki</string>
+    <string name="mainBtnMeals">Posiłki</string>
+    <string name="mainBtnCalendar">Kalendarz</string>
+    <string name="mainBtnCalories">Dodaj posiłek</string>
+    <string name="addIngredientBtn">Dodaj składnik</string>
+    <string name="addMealBtn">Dodaj posiłek</string>
+    <string name="addBtn">DODAJ</string>
+    <string name="cancelBtn">ANULUJ</string>
+    <string name="updateBtn">ZAKTUALIZUJ</string>
+
+    <string name="addIngredientDialogTitle">Dodaj składnik</string>
+    <string name="updateDialogTitle">Zaktualizuj</string>
+    <string name="deleteDialogTitle">Usuwanie</string>
+    <string name="deleteDialogDescription">Czy na pewno chcesz usunąć?</string>
+    <string name="addMealTitle">Dodaj posiłek</string>
+
+    <string name="updateDialogDescription">Zaktualizuj informacje o wybranym wpisie</string>
+    <string name="addIngredientDialogDescription">Wprowadź informacje o składniku który chcesz dodać: nazwę, kalorie na 100g składnika</string>
+    <string name="addCaloriesDialogDescription">Wprowadź masę spożytego posiłku w gramach</string>
+    <string name="addIngredientMealDialogDescription">Wprowadź nazwę składnika zgodną z nazwą w bazie i ilość użytą w przepisie</string>
+
+    <string name="nameLabel">Nazwa</string>
+    <string name="caloriesLabel">Kalorie na 100g</string>
+    <string name="descriptionLabel">Opis</string>
+
+    <string name="positiveBtn">Tak</string>
+    <string name="negativeBtn">Nie</string>
+
+    <string name="insertDataToast">Wprowadź dane</string>
+
+    <string name="addedIngredientToast">Dodano składnik</string>
+    <string name="addedMealToast">Dodano posiłek</string>
+    <string name="addedCaloriesToast">Dodano kalorie</string>
+
+    <string name="updatedIngredientToast">Zaktualizowano składnik</string>
+    <string name="updatedMealToast">Zaktualizowano posiłek</string>
+
+    <string name="deletedIngredientToast">Usunięto składnik</string>
+    <string name="deletedMealToast">Usunięto posiłek</string>
+    <string name="amountLabel">Masa</string>
+    <string name="unknownIngredientToast">Nieznany składnik</string>
+
+    <string name="noIngredientsToast">Brak składników</string>
+    <string name="invalidCalories">Nieprawidłowe kalorie</string>
+
+</resources>
