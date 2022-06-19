@@ -39,23 +39,4 @@ class DaysActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
         }
     }
-
-    // DEBUG MODE
-    fun deleteDay(day: ItemModelDay) {
-        val databaseManager: DatabaseManager = DatabaseManager(this)
-        val status = databaseManager.deleteDay(
-            ItemModelDay(
-                day.id,
-                "", 0
-            )
-        )
-        if (status > -1) {
-            Toast.makeText(
-                applicationContext,
-                "Usunięto dzień", Toast.LENGTH_SHORT
-            ).show()
-
-            setupRecyclerViewData()
-        }
-    }
 }

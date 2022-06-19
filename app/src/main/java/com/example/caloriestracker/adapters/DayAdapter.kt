@@ -33,13 +33,6 @@ class DayAdapter (private val context: Context, private val list: List<ItemModel
 
         holder.tvDate.text = itemViewModel.date
         holder.tvCalories.text = String.format("%d kcal", itemViewModel.calories)
-
-        // DEBUG MODE
-        holder.llMain.setOnClickListener {
-            if(context is DaysActivity){
-                context.deleteDay(itemViewModel)
-            }
-        }
     }
 
     override fun getItemCount(): Int {
@@ -49,8 +42,5 @@ class DayAdapter (private val context: Context, private val list: List<ItemModel
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvDate: TextView = view.findViewById(R.id.tvDate)
         val tvCalories: TextView = view.findViewById(R.id.tvCalories)
-
-        // DEBUG MODE
-        val llMain: LinearLayout = view.findViewById(R.id.llMain)
     }
 }

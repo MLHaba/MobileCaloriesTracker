@@ -386,16 +386,4 @@ class DatabaseManager(context: Context) :
         }
     }
     // endregion
-
-    // DEBUG MODE
-    fun temp(id: Int) : Int {
-        val database = this.writableDatabase
-
-        // Deleting element from database
-        val success = database.delete(TABLE_DAYS,
-            KEY_ID_D + "=" + id, null)
-
-        database.close()
-        return success
-    }
 }
