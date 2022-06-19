@@ -36,7 +36,7 @@ class IngredientsActivity : AppCompatActivity() {
     private fun setupRecyclerViewData() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = IngredientAdapter(this, getIngredientsList())
+        val adapter = IngredientAdapter(this, getIngredientsList(), IngredientAdapter.VIEW_TYPE_REGULAR)
         recyclerView.adapter = adapter
     }
 

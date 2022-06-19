@@ -1,5 +1,6 @@
 package com.example.caloriestracker
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -20,10 +21,7 @@ class CreatingMealRecipe() : AppCompatActivity(){
 
     companion object {
         // lista składników w przepisie
-        lateinit var ingredientsList: ArrayList<ItemModelIngredient>
-
-        // całkowita masa posiłku
-        var total_amount: Int = 0
+        lateinit var ingredientsListPairs: ArrayList<Pair<Int, ItemModelIngredient>>
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,33 +38,48 @@ class CreatingMealRecipe() : AppCompatActivity(){
             addIngredientMealDialog()
         }
 
-        ingredientsList = ArrayList<ItemModelIngredient>()
-        total_amount = 0
+        val cancelButton = findViewById<Button>(R.id.btnCancel)
+        cancelButton.setOnClickListener() {
+            finish()
+        }
+
+        ingredientsListPairs = ArrayList<Pair<Int, ItemModelIngredient>>()
         setupRecyclerViewData()
+    }
+
+    // Zwraca listę składników w przepisie
+    private fun getIngredientsList() : ArrayList<ItemModelIngredient>{
+        val list = ArrayList<ItemModelIngredient>()
+        for(pair in ingredientsListPairs){
+            list.add(pair.second)
+        }
+        return list
     }
 
     // Ustawia źródło danych i adapter dla RecyclerView
     private fun setupRecyclerViewData() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = IngredientAdapter(this, ingredientsList)
+        val adapter = IngredientAdapter(this, getIngredientsList(), IngredientAdapter.VIEW_TYPE_RECIPE)
         recyclerView.adapter = adapter
     }
 
     // Tworzy posiłek na podstawie listy składników i masy, dodaje go do bazy
     private fun createMeal(){
 
-        if(ingredientsList.size <= 0) {
+        if(ingredientsListPairs.size <= 0) {
             Toast.makeText(applicationContext,
                 (R.string.noIngredientsToast), Toast.LENGTH_SHORT).show()
             return
         }
 
         var total_calories: Int = 0
+        var total_amount: Int = 0
         var ingredients: String = String()
-        for (itemModelIngredient in ingredientsList) {
-            total_calories += itemModelIngredient.calories
-            ingredients += itemModelIngredient.name + ", "
+        for (pair in ingredientsListPairs) {
+            total_calories += pair.second.calories
+            total_amount += pair.first
+            ingredients += pair.second.name + ", "
         }
 
         if(total_calories <= 0) {
@@ -117,8 +130,8 @@ class CreatingMealRecipe() : AppCompatActivity(){
                     databaseManager.existsIngredient(name)
                 if (status > -1) {
                     val calculatedCalories = ceil(status.toDouble() * (amount.toDouble()/100))
-                    ingredientsList.add(ItemModelIngredient(0, name, calculatedCalories.toInt()))
-                    total_amount += amount.toInt()
+                    val ingredient = ItemModelIngredient(0, name, calculatedCalories.toInt())
+                    ingredientsListPairs.add(Pair(amount.toInt(), ingredient))
                     setupRecyclerViewData()
                     addDialog.dismiss()
                 } else {
@@ -138,5 +151,35 @@ class CreatingMealRecipe() : AppCompatActivity(){
         })
 
         addDialog.show()
+    }
+
+    // Usuwa składnik z listy składników w przepisie
+    fun deleteIngredientDialog(ingredient: ItemModelIngredient) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.deleteDialogTitle))
+        builder.setMessage(getString(R.string.deleteDialogDescription))
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        builder.setPositiveButton(getString(R.string.positiveBtn)) { dialogInterface, which ->
+
+            for (pair in ingredientsListPairs) {
+                if(pair.second.name == ingredient.name &&
+                        pair.second.calories == ingredient.calories){
+                    ingredientsListPairs.remove(pair)
+                    break
+                }
+            }
+
+            setupRecyclerViewData()
+            dialogInterface.dismiss()
+        }
+
+        builder.setNegativeButton(getString(R.string.negativeBtn)) { dialogInterface, which ->
+            dialogInterface.dismiss()
+        }
+
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
 }
