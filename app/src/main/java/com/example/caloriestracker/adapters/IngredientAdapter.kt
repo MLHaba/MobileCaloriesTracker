@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.caloriestracker.CreatingMealRecipe
@@ -19,6 +20,7 @@ class IngredientAdapter (private val context: Context, private val list: List<It
     companion object {
         const val VIEW_TYPE_REGULAR = 1
         const val VIEW_TYPE_RECIPE = 2
+        const val VIEW_TYPE_CLEAN = 3
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -31,13 +33,20 @@ class IngredientAdapter (private val context: Context, private val list: List<It
                     parent, false)
 
             return ViewHolder(viewRegular)
-        } else {
+        } else if(viewType == VIEW_TYPE_RECIPE){
             val viewRecipe = LayoutInflater.from(parent.context)
                 .inflate(
                     R.layout.item_view_layout_ingredient_recipe,
                     parent, false)
 
             return ViewHolderRecipe(viewRecipe)
+        } else {
+            val viewClean = LayoutInflater.from(parent.context)
+                .inflate(
+                    R.layout.item_view_layout_ingredient_clean,
+                    parent, false)
+
+            return ViewHolderClean(viewClean)
         }
     }
 
@@ -72,6 +81,11 @@ class IngredientAdapter (private val context: Context, private val list: List<It
                 }
             }
         }
+
+        if(holder is ViewHolderClean){
+            holder.tvName.text = itemViewModel.name
+            holder.tvCalories.text = String.format("%d kcal", itemViewModel.calories)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -93,5 +107,11 @@ class IngredientAdapter (private val context: Context, private val list: List<It
         val tvName: TextView = view.findViewById(R.id.tvName)
         val tvCalories: TextView = view.findViewById(R.id.tvCalories)
         val ivDelete: ImageView = view.findViewById(R.id.ivDelete)
+    }
+
+    class ViewHolderClean(view: View) : RecyclerView.ViewHolder(view) {
+        val tvName: TextView = view.findViewById(R.id.tvName)
+        val tvCalories: TextView = view.findViewById(R.id.tvCalories)
+        val llMain: LinearLayout = view.findViewById(R.id.llMain)
     }
 }
