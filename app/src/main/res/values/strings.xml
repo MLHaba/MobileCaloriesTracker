@@ -49,5 +49,6 @@
     <string name="invalidCalories">Nieprawidłowe kalorie</string>
     <string name="noRecordsMessage">Brak rekordów</string>
     <string name="noRecipesMessage">Brak przepisów</string>
+    <string name="addCaloriesDialogTitle">Dodaj kalorie</string>
 
 </resources>

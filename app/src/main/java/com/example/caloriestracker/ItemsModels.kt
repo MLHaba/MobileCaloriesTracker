@@ -1,7 +1,5 @@
 package com.example.caloriestracker
 
-import java.time.LocalDate
-
 // Model składnika
 class ItemModelIngredient(val id: Int, val name: String, val calories: Int){}
 
