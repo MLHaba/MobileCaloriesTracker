@@ -18,6 +18,7 @@
     <string name="deleteDialogTitle">Usuwanie</string>
     <string name="deleteDialogDescription">Czy na pewno chcesz usunąć?</string>
     <string name="addMealTitle">Dodaj posiłek</string>
+    <string name="addCaloriesDialogTitle">Dodaj kalorie</string>
 
     <string name="updateDialogDescription">Zaktualizuj informacje o wybranym wpisie</string>
     <string name="addIngredientDialogDescription">Wprowadź informacje o składniku który chcesz dodać: nazwę, kalorie na 100g składnika</string>
@@ -44,13 +45,11 @@
     <string name="deletedMealToast">Usunięto posiłek</string>
     <string name="amountLabel">Masa</string>
     <string name="unknownIngredientToast">Nieznany składnik</string>
+    <string name="existingIngredientToast">Składnik już znajduje się w bazie</string>
+    <string name="existingMealToast">Posiłek już znajduje się w bazie</string>
 
     <string name="noIngredientsToast">Brak składników</string>
     <string name="invalidCalories">Nieprawidłowe kalorie</string>
     <string name="noRecordsMessage">Brak rekordów</string>
     <string name="noRecipesMessage">Brak przepisów</string>
-    <string name="addCaloriesDialogTitle">Dodaj kalorie</string>
-    <string name="existingIngredientToast">Składnik już znajduje się w bazie</string>
-    <string name="existingMealToast">Posiłek już istnieje</string>
-
 </resources>

@@ -120,7 +120,7 @@ class CreatingMealRecipe() : AppCompatActivity() {
         val calculatedCalories = ceil(total_calories.toDouble() / total_amount.toDouble() * 100)
         val databaseManager: DatabaseManager = DatabaseManager(this)
 
-        if(databaseManager.existsIngredient(name)){
+        if(databaseManager.existsMeal(name)){
             Toast.makeText(applicationContext,
                 getString(R.string.existingMealToast), Toast.LENGTH_SHORT).show()
             return

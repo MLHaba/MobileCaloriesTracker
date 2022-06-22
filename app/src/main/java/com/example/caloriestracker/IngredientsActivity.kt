@@ -62,17 +62,17 @@ class IngredientsActivity : AppCompatActivity() {
                 if(databaseManager.existsIngredient(name)){
                     Toast.makeText(applicationContext,
                         getString(R.string.existingIngredientToast), Toast.LENGTH_SHORT).show()
-                }
-
-                val status =
-                    databaseManager.addIngredient(
-                        ItemModelIngredient(
-                        id = 0, name = name, calories = calories.toInt()))
-                if (status > -1) {
-                    Toast.makeText(applicationContext,
-                        getString(R.string.addedIngredientToast), Toast.LENGTH_SHORT).show()
-                    setupRecyclerViewData()
-                    addDialog.dismiss()
+                } else {
+                    val status =
+                        databaseManager.addIngredient(
+                            ItemModelIngredient(
+                                id = 0, name = name, calories = calories.toInt()))
+                    if (status > -1) {
+                        Toast.makeText(applicationContext,
+                            getString(R.string.addedIngredientToast), Toast.LENGTH_SHORT).show()
+                        setupRecyclerViewData()
+                        addDialog.dismiss()
+                    }
                 }
             } else {
                 Toast.makeText(applicationContext,
