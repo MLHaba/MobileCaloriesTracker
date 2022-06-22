@@ -50,5 +50,7 @@
     <string name="noRecordsMessage">Brak rekordów</string>
     <string name="noRecipesMessage">Brak przepisów</string>
     <string name="addCaloriesDialogTitle">Dodaj kalorie</string>
+    <string name="existingIngredientToast">Składnik już znajduje się w bazie</string>
+    <string name="existingMealToast">Posiłek już istnieje</string>
 
 </resources>

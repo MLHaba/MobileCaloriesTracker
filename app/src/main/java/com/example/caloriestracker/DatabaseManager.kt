@@ -103,7 +103,6 @@ class DatabaseManager(context: Context) :
         try {
             cursor = database.rawQuery(selectQuery, null)
         } catch (e: SQLiteException) {
-            database.execSQL(selectQuery)
             return ArrayList()
         }
 
@@ -157,6 +156,19 @@ class DatabaseManager(context: Context) :
         return success
     }
 
+    fun existsIngredient(name: String) : Boolean {
+        val database = this.readableDatabase
+        val selectQuery = "SELECT  * FROM $TABLE_INGREDIENTS WHERE $KEY_NAME_I = ?"
+        var cursor: Cursor? = null
+
+        try {
+            cursor = database.rawQuery(selectQuery, arrayOf(name))
+        } catch (e: SQLiteException) {
+            return true
+        }
+
+        return cursor.moveToFirst()
+    }
     //endregion
 
     //region MEAL
@@ -264,6 +276,20 @@ class DatabaseManager(context: Context) :
         return success
     }
 
+    fun existsMeal(name: String) : Boolean {
+        val database = this.readableDatabase
+        val selectQuery = "SELECT  * FROM $TABLE_MEALS WHERE $KEY_NAME_M = ?"
+        var cursor: Cursor? = null
+
+        try {
+            cursor = database.rawQuery(selectQuery, arrayOf(name))
+        } catch (e: SQLiteException) {
+            return true
+        }
+
+        return cursor.moveToFirst()
+    }
+
     // Wyświetla dni w bazie danych
     @SuppressLint("Range")
     fun viewDays() : ArrayList<ItemModelDay> {
@@ -277,7 +303,6 @@ class DatabaseManager(context: Context) :
         try {
             cursor = database.rawQuery(selectQuery, null)
         } catch (e: SQLiteException) {
-            database.execSQL(selectQuery)
             return ArrayList()
         }
 
@@ -344,12 +369,10 @@ class DatabaseManager(context: Context) :
         try {
             cursor = database.rawQuery(selectQuery, arrayOf(day.date))
         } catch (e: SQLiteException) {
-            database.execSQL(selectQuery)
             return
         }
 
         val id: Int
-        var date: String
         val calories: Int
 
         if (cursor.moveToFirst()){

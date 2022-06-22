@@ -58,6 +58,12 @@ class IngredientsActivity : AppCompatActivity() {
             val databaseManager: DatabaseManager = DatabaseManager(this)
 
             if(name.isNotEmpty() && calories.isNotEmpty()) {
+
+                if(databaseManager.existsIngredient(name)){
+                    Toast.makeText(applicationContext,
+                        getString(R.string.existingIngredientToast), Toast.LENGTH_SHORT).show()
+                }
+
                 val status =
                     databaseManager.addIngredient(
                         ItemModelIngredient(
