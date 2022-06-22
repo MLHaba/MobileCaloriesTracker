@@ -11,6 +11,6 @@
     <color name="LightMain">#FF8ECAE6</color>
     <color name="MediumMain">#FF219EBC</color>
     <color name="DarkMain">#FF023047</color>
-    <color name="LightSecondary">#FFFFB703</color>
-    <color name="DarkSecondary">#FFFB8500</color>
+    <color name="DarkSecondary">#3F3F3F</color>
+    <color name="LightSecondary">#FFFFFFFF</color>
 </resources>

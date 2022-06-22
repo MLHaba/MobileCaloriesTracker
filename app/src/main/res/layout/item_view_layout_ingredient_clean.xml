@@ -8,7 +8,7 @@
     android:padding="10dp"
     android:layout_marginBottom="5dp"
     android:foreground="?attr/selectableItemBackground"
-    android:background="@color/MediumMain">
+    android:background="?colorPrimary">
 
     <TextView
         android:id="@+id/tvName"
